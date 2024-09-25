@@ -1,0 +1,43 @@
+﻿@model IEnumerable<OrderVM>
+
+
+<span class="text-center text-black">ALL ORDERS</span>
+<hr />
+<a asp-controller="Order" asp-action="Create" class="text-black text-decoration-none">Create New Order</a>
+@if (Model.Any())
+{
+    <table class=" table p-2 m-3">
+        <thead>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.OrderName) </td>
+                <td>@Html.DisplayNameFor(model => model.price) </td>
+                <td>OPERATIONS</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+                <tr>
+                    <td> @x.OrderName  </td>
+                    <td>@x.price</td>
+                    <td>@x.OrderDateCreated</td>
+                 <td><partial name="_ButPartial" for ="@x.OrderId"/></td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+}
+
+else
+
+{
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <alert class="alert alert-danger">EMPTY...</alert>
+}
